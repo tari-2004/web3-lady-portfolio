@@ -60,7 +60,7 @@ export default function Web3Navbar() {
             className="group relative px-4 py-2.5 md:px-7 md:py-3 bg-white rounded-sm overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(79,70,229,0.4)] block"
           >
             {/* Text is black by default, turns white on hover fill */}
-            <span className="relative z-10 text-white group-hover:text-white text-[10px] md:text-[12px] font-black uppercase tracking-widest transition-colors duration-500">
+            <span className="relative z-10 text-black group-hover:text-white text-[10px] md:text-[12px] font-black uppercase tracking-widest transition-colors duration-500">
               Let's Talk
             </span>
 
