@@ -8,7 +8,7 @@ import Expertise from "./components/Expertise";
 import AuthorityStrip from "./components/AuthorityStrip";
 import FeaturedInfluence from "./components/FeaturedInfluence";
 import CaseStudies from "./components/CaseStudies";
-import Insights from "./components/Insights";
+// import Insights from "./components/Insights";
 import CallToAction from "./components/CallToAction";
 import Web3Footer from "./components/Web3Footer";
 import { motion, useScroll, useSpring } from "framer-motion";
@@ -73,7 +73,7 @@ export default function Home() {
           <AuthorityStrip />
           <FeaturedInfluence />
           <CaseStudies />
-          <Insights />
+          {/* <Insights /> */}
           
           {/* Final Conversion Zone */}
           <CallToAction />

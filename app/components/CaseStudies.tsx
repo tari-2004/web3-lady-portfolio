@@ -7,7 +7,7 @@ const solutions = [
   {
     title: "Organic Lead Generation",
     result: "+150% Growth",
-    image: "/images/blue2.jpg", // Use a high-end abstract or UI render
+    image: "/images/lead.jpg", // Use a high-end abstract or UI render
     description: "Architecting content funnels that convert passive scrolling into active engagement."
   },
   {
@@ -19,7 +19,7 @@ const solutions = [
   {
     title: "Community Architecture",
     result: "High Retention",
-    image: "/images/wb.jpg",
+    image: "/images/arc.jpg",
     description: "Building resilient digital ecosystems through strategic cross-platform positioning."
   }
 ];
@@ -52,7 +52,7 @@ export default function ExpertiseCards() {
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  className="object-cover group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                 />
                 
                 {/* Glass Tag Overlay */}
