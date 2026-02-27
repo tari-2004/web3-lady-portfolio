@@ -1,132 +1,90 @@
 "use client";
-
-import { motion, useSpring, useMotionValue } from "framer-motion";
-import { FiArrowUpRight } from "react-icons/fi";
+import { motion } from "framer-motion";
 import Image from "next/image";
+import { FiArrowUpRight } from "react-icons/fi";
 
-const projects = [
+const solutions = [
   {
-    client: "Coinmonks Publication",
-    role: "Technical Writer",
-    title: "On-chain Education for the Next Billion",
-    result: "Top Writer Status",
-    desc: "Strategized and authored educational content focused on simplifying DeFi protocols for retail investors.",
-    // You'll replace these with your actual 3D renders/abstract photos
-    image: "/images/bio-francis-book.jpg" 
+    title: "Organic Lead Generation",
+    result: "+150% Growth",
+    image: "/images/blue2.jpg", // Use a high-end abstract or UI render
+    description: "Architecting content funnels that convert passive scrolling into active engagement."
   },
   {
-    client: "Ecosystem Growth",
-    role: "Lead Generation",
-    title: "Organic Community Funnel Design",
-    result: "Lead Gen Optimization",
-    desc: "Implemented a content-first strategy that converted passive Twitter engagement into a high-retention Discord community.",
-    image: "/case-study-02.jpg"
+    title: "Web3 Education",
+    result: "Global Reach",
+    image: "/images/books.jpg",
+    description: "Simplifying complex blockchain protocols into high-impact learning experiences."
   },
   {
-    client: "Strategic Consulting",
-    role: "Marketing Strategist",
-    title: "Emotional Marketing Architecture",
-    result: "High-Intent Engagement",
-    desc: "Developed a brand voice focused on human-centric blockchain solutions, moving away from 'hype' into 'utility'.",
-    image: "/case-study-03.jpg"
-  },
+    title: "Community Architecture",
+    result: "High Retention",
+    image: "/images/wb.jpg",
+    description: "Building resilient digital ecosystems through strategic cross-platform positioning."
+  }
 ];
 
-export default function CaseStudies() {
+export default function ExpertiseCards() {
   return (
-    <section id="work" className="py-32 px-6 bg-[#050505]">
+    <section className="py-32 px-6 bg-[#050505]">
       <div className="max-w-7xl mx-auto">
         
-        <div className="mb-24">
-          <span className="text-indigo-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-            // Selected Case Studies
-          </span>
-          <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight uppercase">
-            Proof of <br />
-            <span className="italic text-slate-700 font-light">Conversion.</span>
+        <div className="mb-20">
+          <span className="text-indigo-500 font-mono text-[10px] tracking-[0.5em] uppercase block mb-4">// Capabilities</span>
+          <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase">
+            Solutions that <span className="text-slate-500 italic font-light">Scale.</span>
           </h2>
         </div>
 
-        <div className="flex flex-col border-t border-white/5">
-          {projects.map((project, i) => (
-            <ProjectRow key={i} project={project} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {solutions.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="group relative flex flex-col h-full"
+            >
+              {/* THE IMAGE CARD */}
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl mb-8 border border-white/10">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                />
+                
+                {/* Glass Tag Overlay */}
+                <div className="absolute top-4 right-4 px-3 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-full">
+                  <span className="text-[10px] font-black text-white uppercase tracking-widest">{item.result}</span>
+                </div>
+
+                {/* Bottom Gradient for Text Legibility */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+
+              {/* CONTENT BELOW CARD */}
+              <div className="px-2">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="text-2xl font-bold text-white tracking-tight group-hover:text-indigo-400 transition-colors">
+                    {item.title}
+                  </h3>
+                  <FiArrowUpRight className="text-indigo-500 text-xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </div>
+                <p className="text-slate-400 text-sm leading-relaxed font-light">
+                  {item.description}
+                </p>
+              </div>
+
+              {/* Hover Line */}
+              <div className="mt-8 h-[1px] w-full bg-white/5 relative overflow-hidden">
+                <div className="absolute inset-0 bg-indigo-500 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  );
-}
-
-function ProjectRow({ project }: { project: any }) {
-  // Parallax mouse tracking
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  // Smooth out the movement
-  const springX = useSpring(x, { stiffness: 100, damping: 20 });
-  const springY = useSpring(y, { stiffness: 100, damping: 20 });
-
-  function handleMouseMove(event: React.MouseEvent) {
-    const rect = event.currentTarget.getBoundingClientRect();
-    x.set(event.clientX - rect.left - 150); // Offset to center image
-    y.set(event.clientY - rect.top - 150);
-  }
-
-  return (
-    <motion.div
-      onMouseMove={handleMouseMove}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="group relative grid grid-cols-1 lg:grid-cols-12 py-16 px-4 border-b border-white/5 cursor-pointer transform-gpu overflow-visible"
-    >
-      {/* FLOATING IMAGE PORTAL */}
-      <motion.div
-        style={{ x: springX, y: springY }}
-        className="fixed lg:absolute z-[50] pointer-events-none opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-500 ease-out"
-      >
-        <div className="relative w-[300px] h-[350px] overflow-hidden rounded-xl border border-white/10 shadow-2xl">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
-          />
-          {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 to-transparent" />
-        </div>
-      </motion.div>
-
-      {/* TEXT CONTENT (STAYS VISIBLE) */}
-      <div className="lg:col-span-3 mb-6 lg:mb-0 relative z-10">
-        <p className="text-indigo-500 font-bold text-xs uppercase tracking-widest mb-2">
-          {project.client}
-        </p>
-        <p className="text-slate-500 text-[10px] font-mono uppercase tracking-widest">
-          {project.role}
-        </p>
-      </div>
-
-      <div className="lg:col-span-6 mb-8 lg:mb-0 relative z-10">
-        <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors duration-500 leading-tight">
-          {project.title}
-        </h3>
-        <p className="text-slate-400 font-light leading-relaxed max-w-md text-sm md:text-base opacity-60 group-hover:opacity-100 transition-opacity">
-          {project.desc}
-        </p>
-      </div>
-
-      <div className="lg:col-span-3 flex flex-col justify-between items-start lg:items-end relative z-10">
-        <div className="px-4 py-1 border border-indigo-500/30 rounded-full bg-indigo-500/5 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
-          <span className="text-indigo-400 group-hover:text-white text-[10px] font-black uppercase tracking-widest">
-            {project.result}
-          </span>
-        </div>
-        
-        <div className="flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-[0.3em] mt-8 lg:mt-0 group-hover:translate-x-1 transition-transform duration-300">
-          View Case <FiArrowUpRight className="text-indigo-500 text-lg" />
-        </div>
-      </div>
-    </motion.div>
   );
 }
