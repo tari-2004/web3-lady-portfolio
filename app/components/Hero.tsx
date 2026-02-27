@@ -10,7 +10,7 @@ export default function BioFrancisHero() {
     // Timer to swap image after 2 seconds
     const timer = setTimeout(() => {
       setShowMainImage(true);
-    }, 8000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
